@@ -1,3 +1,4 @@
+import { AppError } from "../../shared/appError";
 import { IUser, IUserUpdate } from "./user.interface";
 import { UserModel } from "./user.model";
 
@@ -22,6 +23,27 @@ const updateSingleUserIntoDb = async (id: string, payload: IUserUpdate) => {
     return result
 }
 
+const blockSingleUserIntoDb = async (id: string, payload: IUserUpdate) => {
+    const updatedPaylod = {
+        ...payload,
+        isBlocked: true
+    }
+    const user = await UserModel.findById(id);
+    if (!user) {
+      throw new AppError(404, "User not found");
+    }
+
+    const result = await UserModel.findByIdAndUpdate(id, updatedPaylod, {
+        new: true,
+    });
+
+    if (!result) {
+        throw new AppError(404, "User not found");
+    }
+
+    return result;
+}
+
 const deleteUserFromDb = async (id: string) => {
     const result = UserModel.findByIdAndDelete(id);
     return result
@@ -32,5 +54,6 @@ export const UserServices = {
     getUserFromDb,
     getSingleUserFromDb,
     updateSingleUserIntoDb,
-    deleteUserFromDb
+    deleteUserFromDb,
+    blockSingleUserIntoDb
 }
