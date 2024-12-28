@@ -28,8 +28,11 @@ app.get('/', (req: Request, res: Response) => {
 
 // Global error handler
 app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
+  const statusCode = 500;
+  const message = 'Something went wrong';
+
+  // eslint-disable-next-line no-console
+  console.error('Error Stack:', err.stack);
 
   res.status(statusCode).json({
       success: false,
