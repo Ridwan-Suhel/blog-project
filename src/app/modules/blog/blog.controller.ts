@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
-// import BlogValidationSchema from "./blog.validation";
+import BlogValidationSchema from "./blog.validation";
 import { blogServices } from './blog.services';
 import { AppError } from '../../shared/appError';
 
@@ -8,9 +8,9 @@ const CreateBlog = async (req: Request, res: Response) => {
   try {
     const payload = req.body;
     const userId = req.user?.id;
-    // const parseValidateData = BlogValidationSchema.parse(payload);
+    const parseValidateData = BlogValidationSchema.parse(payload);
 
-    const result = await blogServices.createBlogIntoDb(payload, userId);
+    const result = await blogServices.createBlogIntoDb(parseValidateData, userId);
     res.status(200).json({
       success: true,
       message: 'Blog created successfully',
