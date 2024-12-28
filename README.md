@@ -84,6 +84,6 @@ Hi! My name is **Ridwan Suhel**. I'm a passionate developer who loves creating e
 
 ### Links 🔗
 - **GitHub Repository**: [Blog Platform Backend Project Github Repo](https://github.com/Ridwan-Suhel/blog-project.git)
-- **Live API**: [Blog Project API on Vercel](https://car-store-api.vercel.app)
+- **Live API**: [Blog Project API on Vercel](https://blog-project-api-github.vercel.app/)
 
 Feel free to explore the API
