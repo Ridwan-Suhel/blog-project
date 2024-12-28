@@ -8,12 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlogController = void 0;
-const blog_validation_1 = __importDefault(require("./blog.validation"));
+// import BlogValidationSchema from "./blog.validation";
 const blog_services_1 = require("./blog.services");
 const appError_1 = require("../../shared/appError");
 const CreateBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,8 +18,8 @@ const CreateBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const payload = req.body;
         const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
-        const parseValidateData = blog_validation_1.default.parse(payload);
-        const result = yield blog_services_1.blogServices.createBlogIntoDb(parseValidateData, userId);
+        // const parseValidateData = BlogValidationSchema.parse(payload);
+        const result = yield blog_services_1.blogServices.createBlogIntoDb(payload, userId);
         res.status(200).json({
             success: true,
             message: 'Blog created successfully',
