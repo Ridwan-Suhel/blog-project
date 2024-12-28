@@ -23,21 +23,6 @@ app.get('/', (req, res) => {
         message: "Welcome to blog app. API V.0.1 🔥",
     });
 });
-// Global error handler
-app.use((err, req, res, next) => {
-    const statusCode = 500;
-    const message = 'Something went wrong';
-    // eslint-disable-next-line no-console
-    console.error('Error Stack:', err.stack);
-    res.status(statusCode).json({
-        success: false,
-        message,
-        error: {
-            statusCode,
-        },
-    });
-    next();
-});
 // 404 handler for undefined routes
 app.use((req, res) => {
     res.status(404).json({

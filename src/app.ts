@@ -1,9 +1,8 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { BlogRoutes } from './app/modules/blog/blog.route';
 import { AuthRoutes } from './app/modules/Auth/auth.routes';
 import { UserRoutes } from './app/modules/user/user.route';
-import { AppError } from './app/shared/appError';
 const app: Application = express();
 
 // parser
@@ -24,25 +23,6 @@ app.get('/', (req: Request, res: Response) => {
       message: "Welcome to blog app. API V.0.1 🔥",
     }
   );
-});
-
-// Global error handler
-app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
-  const statusCode = 500;
-  const message = 'Something went wrong';
-
-  // eslint-disable-next-line no-console
-  console.error('Error Stack:', err.stack);
-
-  res.status(statusCode).json({
-      success: false,
-      message,
-      error: {
-          statusCode,
-      },
-  });
-
-  next();
 });
 
 // 404 handler for undefined routes
