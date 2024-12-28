@@ -20,7 +20,6 @@ const createUser = async (req: Request, res: Response) => {
     }
     
     catch(error: unknown | any){
-        console.log(error)
         if(error.issues){
             const { message } = error.issues[0];
             const errorFormat = {
