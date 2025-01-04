@@ -8,8 +8,8 @@ const LoginUser = async (req: Request, res: Response) => {
         const result = await AuthService.LoginUser(req.body);
         res.status(200).json({
             success: true,
-            message: "User is logged in successfully",
-            statusCode: 201,
+            message: "Login successful",
+            statusCode: 200,
             data: result,
         })
 
