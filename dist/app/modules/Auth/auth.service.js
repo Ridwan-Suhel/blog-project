@@ -42,9 +42,9 @@ const LoginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         email: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.email,
         role: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.role
     };
-    const accessToken = jsonwebtoken_1.default.sign(jwtPayload, config_1.default.jwt_access_secret, { expiresIn: '10d' });
+    const token = jsonwebtoken_1.default.sign(jwtPayload, config_1.default.jwt_access_secret, { expiresIn: '10d' });
     return {
-        accessToken
+        token
     };
 });
 exports.AuthService = {
